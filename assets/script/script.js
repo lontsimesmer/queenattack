@@ -4,16 +4,17 @@ const alerts = document.querySelector('.alerterror')
 const attack = document.querySelector('#check')
 attack.addEventListener('click', checkAttack)
 let notSelected = 0
-const selectedCell = []
+let selectedCell = []
 
 function selectPosition () {
-  const id = this.getAttribute('id')
+  let id = this.getAttribute('id')
 
-  const selectedIndex = selectedCell.indexOf(id)
+  let selectedIndex = selectedCell.indexOf(id)
 
   if (selectedIndex >= 0) {
     this.style.border = '5px solid #cd5c5c'
     notSelected--
+    return;
   } else if (notSelected < 2) {
     this.style.border = '5px solid #556b2f'
     selectedCell.push(id)
@@ -22,6 +23,7 @@ function selectPosition () {
     alerts.textContent = 'Oups! You can only make two moves.'
     alert.textContent = ''
   }
+  return;
 }
 
 for (let i = 0; i < select.length; i++) {
@@ -36,30 +38,30 @@ function attackFunction () {
     const position1 = selectedCell[0]
     const position2 = selectedCell[1]
 
-    const cell1 = position1.split('', position1)[0]
-    const cell2 = position1.split('', position1)[1]
+    const cell11 = position1.split('', position1)[0]
+    const cell12 = position1.split('', position1)[1]
 
-    const cell11 = position2.split('', position2)[0]
-    const cell12 = position2.split('', position2)[1]
+    const cell21 = position2.split('', position2)[0]
+    const cell22 = position2.split('', position2)[1]
 
     // horizontal check
-    if (cell1 === cell11) {
+    if (cell11 === cell21) {
       return true
     }
 
     // vertical check
-    if (cell2 === cell12) {
+    if (cell12 === cell22) {
       return true
     }
 
-    // diagonal check (left to right)
-    if (cell1 - cell2 === cell11 - cell12) {
+    // diagonal check
+    if (cell11 - cell12 === cell21 - cell22) {
       return true
     }
 
     const positionRightLeft = Math.abs(parseInt(position1) - parseInt(position2))
 
-    const moduleRightLeft = positionRightLeft % 9 === 0
+    const moduleRightLeft = (positionRightLeft % 9 === 0) ? true : false
 
     if (moduleRightLeft) {
       return true
@@ -76,4 +78,5 @@ function checkAttack () {
     alerts.textContent = ''
   }
   alerts.style.display = 'block'
+  return;
 }

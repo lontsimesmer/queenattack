@@ -2,7 +2,7 @@ body {
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 3em;
+  gap: 2em;
   min-height: 100vh;
 }
 
@@ -92,6 +92,6 @@ h1 {
 }
 
 .alerterror {
-  font-size: 18px;
   color: #cd5c5c;
+  font-size: 18px;
 }
