@@ -4,17 +4,16 @@ const alerts = document.querySelector('.alerterror')
 const attack = document.querySelector('#check')
 attack.addEventListener('click', checkAttack)
 let notSelected = 0
-let selectedCell = []
+const selectedCell = []
 
 function selectPosition () {
-  let id = this.getAttribute('id')
+  const id = this.getAttribute('id')
 
-  let selectedIndex = selectedCell.indexOf(id)
+  const selectedIndex = selectedCell.indexOf(id)
 
   if (selectedIndex >= 0) {
     this.style.border = '5px solid #cd5c5c'
     notSelected--
-    return;
   } else if (notSelected < 2) {
     this.style.border = '5px solid #556b2f'
     selectedCell.push(id)
@@ -23,7 +22,6 @@ function selectPosition () {
     alerts.textContent = 'Oups! You can only make two moves.'
     alert.textContent = ''
   }
-  return;
 }
 
 for (let i = 0; i < select.length; i++) {
@@ -61,7 +59,7 @@ function attackFunction () {
 
     const positionRightLeft = Math.abs(parseInt(position1) - parseInt(position2))
 
-    const moduleRightLeft = (positionRightLeft % 9 === 0) ? true : false
+    const moduleRightLeft = (positionRightLeft % 9 === 0)
 
     if (moduleRightLeft) {
       return true
@@ -78,5 +76,4 @@ function checkAttack () {
     alerts.textContent = ''
   }
   alerts.style.display = 'block'
-  return;
 }
